@@ -1,90 +1,113 @@
 :root {
     --green: #00ff41;
     --dark-green: #003b00;
-    --bg-black: #0a0a0a;
-    --font-mono: 'Fira Code', monospace;
+    --bg: #050505;
+    --text-dim: #a0a0a0;
 }
 
 body {
-    background-color: var(--bg-black);
+    background-color: var(--bg);
     color: var(--green);
-    font-family: var(--font-mono);
+    font-family: 'Fira Code', monospace;
     margin: 0;
-    overflow-x: hidden;
-    line-height: 1.5;
+    padding: 0;
+    font-size: 14px;
 }
 
-/* Efecto de líneas de escaneo (Scanlines) */
+/* Efecto de línea de escaneo */
 .scanline {
-    width: 100%;
-    height: 100px;
-    z-index: 10;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 255, 65, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
-    opacity: 0.1;
     position: fixed;
-    bottom: 100%;
-    animation: scanline 6s linear infinite;
+    top: 0; width: 100%; height: 2px;
+    background: rgba(0, 255, 65, 0.1);
+    z-index: 100;
+    animation: scan 4s linear infinite;
 }
 
-@keyframes scanline {
-    0% { bottom: 100%; }
-    100% { bottom: -100%; }
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
 }
 
 .terminal-container {
-    padding: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
 }
 
 .status-bar {
     display: flex;
     justify-content: space-between;
+    font-size: 0.7rem;
     border-bottom: 1px solid var(--dark-green);
-    padding-bottom: 0.5rem;
-    margin-bottom: 2rem;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+
+h1 { font-size: 2rem; margin: 0; color: #fff; }
+.subtitle { color: var(--text-dim); margin-top: 5px; font-weight: 300; }
+
+.command {
+    color: #fff;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.command::before { content: "> "; }
+
+.content {
+    border-left: 2px solid var(--dark-green);
+    padding-left: 20px;
+    margin-left: 5px;
+    color: var(--text-dim);
+}
+
+.item { margin-bottom: 20px; }
+.date { color: var(--green); font-weight: bold; display: block; font-size: 0.8rem; }
+.title { color: #fff; font-size: 1.1rem; }
+
+.skill-tag {
+    border: 1px solid var(--green);
+    padding: 2px 8px;
+    margin: 5px;
+    display: inline-block;
     font-size: 0.8rem;
-}
-
-h1 { font-size: 2.5rem; margin: 0; text-shadow: 0 0 10px var(--green); }
-.role { color: var(--dark-green); font-weight: bold; }
-
-.social-links a {
-    color: var(--green);
-    text-decoration: none;
-    margin-right: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.social-links a:hover {
-    background: var(--green);
-    color: black;
 }
 
 .repo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .repo-card {
     border: 1px solid var(--dark-green);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
+    padding: 15px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .repo-card:hover {
-    background: rgba(0, 255, 65, 0.1);
-    border-color: var(--green);
-    transform: translateY(-5px);
+    background: var(--dark-green);
+    color: #fff;
 }
 
-.repo-card h3 { margin-top: 0; color: #fff; }
-.repo-card p { font-size: 0.85rem; color: #adb5bd; }
-.repo-card .lang { font-size: 0.7rem; color: var(--green); border: 1px solid var(--green); padding: 2px 5px; }
+.repo-card h3 { margin: 0; font-size: 0.9rem; color: var(--green); }
+.repo-card p { font-size: 0.75rem; margin: 10px 0; }
 
-@media (max-width: 600px) {
-    h1 { font-size: 1.5rem; }
+.social-links a {
+    color: var(--green);
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 0.8rem;
+}
+
+.social-links a:hover { text-decoration: underline; }
+
+footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--dark-green);
 }

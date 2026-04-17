@@ -1,42 +1,99 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Gonzalo Millón | Security Researcher</title>
+    <title>Alejandro Gonzalo Millón | Cybersecurity Student</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="scanline"></div>
     <div class="terminal-container">
         <header>
             <div class="status-bar">
-                <span>user@gonzalo-millon: ~</span>
-                <span>SSH_CONNECTED</span>
+                <span>[SESSION_ACTIVE]</span>
+                <span>LOCATION: MADRID, ES</span>
+                <span>IP: 127.0.0.1</span>
             </div>
         </header>
 
         <main id="terminal">
+            <!-- HEADER SECTION -->
             <section class="intro">
-                <h1 class="typing">ALEJANDRO GONZALO MILLÓN</h1>
-                <p class="role">>> INGENIERO INFORMÁTICO | ESPECIALISTA EN CIBERSEGURIDAD</p>
+                <h1 class="glitch" data-text="ALEJANDRO GONZALO MILLÓN">ALEJANDRO GONZALO MILLÓN</h1>
+                <p class="subtitle">>> Aspiring Cybersecurity Professional | Computer Engineering Student</p>
                 <div class="social-links">
-                    <a href="https://linkedin.com/in/TU_LINKEDIN" target="_blank">[ LINKEDIN ]</a>
-                    <a href="https://github.com/TU_USUARIO_GITHUB" target="_blank">[ GITHUB ]</a>
+                    <a href="TU_LINKEDIN_AQUI" target="_blank">[ LinkedIn ]</a>
+                    <a href="https://github.com/gonzalomillon" target="_blank">[ GitHub ]</a>
+                    <a href="mailto:tu-email@gmail.com" target="_blank">[ Email ]</a>
                 </div>
             </section>
 
-            <section class="command-line">
-                <span class="prompt">$</span> <span class="cmd">get-repositories --status=public</span>
+            <!-- ABOUT ME -->
+            <section class="section">
+                <p class="command">$ cat whoami.txt</p>
+                <div class="content">
+                    I am a Computer Engineering student based in Madrid, deeply passionate about cyber-defense, penetration testing, and secure software development. 
+                    I focus on understanding how systems fail to learn how to protect them. 
+                    Currently looking for international opportunities to apply my technical mindset.
+                    <br><br>
+                    <strong>Languages:</strong> Spanish (Native), English (Advanced / Professional Working Proficiency).
+                </div>
             </section>
 
-            <section id="github-repos" class="repo-grid">
-                <!-- Los repositorios se cargarán aquí automáticamente -->
-                <p class="loading">Iniciando conexión con GitHub API...</p>
+            <!-- EDUCATION -->
+            <section class="section">
+                <p class="command">$ ls /education/academic_record</p>
+                <div class="content">
+                    <div class="item">
+                        <span class="date">2023 - 2027</span>
+                        <span class="title">B.Sc. in Computer Engineering - UNIE Universidad</span>
+                        <p class="details">Currently in 3rd year. Focusing on Networks, Operating Systems, and Cryptography.</p>
+                    </div>
+                    <div class="item">
+                        <span class="date">2021 - 2023</span>
+                        <span class="title">High School Diploma (Technology) - IES Antonio de Nebrija</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS (Placeholder) -->
+            <section class="section">
+                <p class="command">$ run system_check --skills</p>
+                <div class="content skills-container">
+                    <!-- Aquí pondremos lo que me pases de tu github -->
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Linux/Bash</span>
+                    <span class="skill-tag">Network Security</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">C++</span>
+                </div>
+            </section>
+
+            <!-- REPOSITORIES (AUTO-LOADED) -->
+            <section class="section">
+                <p class="command">$ ./list_public_projects.sh</p>
+                <div id="github-repos" class="repo-grid">
+                    <p class="loading">Establishing handshake with GitHub API...</p>
+                </div>
+            </section>
+
+            <!-- COURSES (Placeholder) -->
+            <section class="section">
+                <p class="command">$ find /certifications -type f</p>
+                <div class="content">
+                    <ul class="course-list">
+                        <!-- Aquí pondremos tus cursos -->
+                        <li>Pending update...</li>
+                    </ul>
+                </div>
             </section>
         </main>
+        
+        <footer>
+            <p class="footer-note">SYSTEM_STATUS: SECURE | DEPLOYED_BY_GONZALO_MILLON</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>

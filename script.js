@@ -1,37 +1,41 @@
-const GITHUB_USER = 'aleee4442'; // <--- CAMBIA ESTO
+const GITHUB_USER = 'aleee4442'; // Asegúrate de que este es tu usuario de GitHub
 
-async function getRepos() {
-    const repoContainer = document.getElementById('github-repos');
+async function fetchRepos() {
+    const container = document.getElementById('github-repos');
     
     try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=10`);
-        const repos = await response.json();
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=12`);
+        
+        if (!response.ok) {
+            throw new Error('User not found');
+        }
 
-        repoContainer.innerHTML = ''; // Limpiar el loading
+        const repos = await response.json();
+        container.innerHTML = ''; // Limpiar mensaje de carga
 
         repos.forEach(repo => {
-            // Solo mostrar repositorios que no sean forks
             if (!repo.fork) {
                 const card = document.createElement('div');
                 card.className = 'repo-card';
                 card.onclick = () => window.open(repo.html_url, '_blank');
 
+                // Formateamos un poco la descripción por si es muy larga
+                let desc = repo.description || "Security related project and source code.";
+                if(desc.length > 80) desc = desc.substring(0, 77) + "...";
+
                 card.innerHTML = `
                     <h3>${repo.name.toUpperCase()}</h3>
-                    <p>${repo.description || 'Sin descripción disponible.'}</p>
-                    <div style="margin-top: 10px;">
-                        <span class="lang">${repo.language || 'Code'}</span>
-                        <span style="float: right; font-size: 0.7rem;">⭐ ${repo.stargazers_count}</span>
-                    </div>
+                    <p>${desc}</p>
+                    <span style="font-size: 10px; color: #00ff41;">[ ${repo.language || 'Plain Text'} ]</span>
                 `;
-                repoContainer.appendChild(card);
+                container.appendChild(card);
             }
         });
+
     } catch (error) {
-        repoContainer.innerHTML = '<p class="error">>> ERROR: No se pudo conectar con el servidor central de GitHub.</p>';
         console.error(error);
+        container.innerHTML = `<p style="color: red;">>> ERROR_CONNECTION_FAILED: GitHub API rejected the handshake. Check username or API limits.</p>`;
     }
 }
 
-// Ejecutar al cargar la página
-window.onload = getRepos;
+document.addEventListener('DOMContentLoaded', fetchRepos);
