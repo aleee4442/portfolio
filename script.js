@@ -1,64 +1,65 @@
-const GITHUB_USER = 'aleee4442'; // Confirmado: este es tu usuario
+const GITHUB_USER = 'aleee4442';
+
+// 1. Proyectos de respaldo (En caso de que la API falle o de Error 403)
+const FALLBACK_REPOS = [
+    {
+        name: "Cybersecurity-Lab",
+        description: "A collection of scripts and tools for security auditing and network analysis.",
+        html_url: `https://github.com/${GITHUB_USER}`,
+        language: "Python"
+    },
+    {
+        name: "Main-Project-2",
+        description: "Detailed description of your second most important project.",
+        html_url: `https://github.com/${GITHUB_USER}`,
+        language: "C++"
+    }
+];
 
 async function fetchRepos() {
     const container = document.getElementById('github-repos');
     
-    console.log("Intentando conectar con GitHub para el usuario:", GITHUB_USER);
-
     try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=12`);
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=10`);
         
-        if (!response.ok) {
-            // Si la respuesta no es 200 OK, lanzamos error con el estado
-            throw new Error(`GitHub API Error: ${response.status} ${response.statusText}`);
-        }
+        if (!response.ok) throw new Error(`API Status: ${response.status}`);
 
         const repos = await response.json();
-        
-        if (repos.length === 0) {
-            container.innerHTML = `<p>>> No public repositories found.</p>`;
-            return;
-        }
-
-        container.innerHTML = ''; // Limpiar mensaje de carga
-
-        repos.forEach(repo => {
-            // Filtramos para no mostrar forks, solo tus proyectos originales
-            if (!repo.fork) {
-                const card = document.createElement('div');
-                card.className = 'repo-card';
-                
-                // Hacemos que toda la tarjeta sea clickable
-                card.onclick = () => window.open(repo.html_url, '_blank');
-
-                let desc = repo.description || "Project focused on system security and development.";
-                if(desc.length > 80) desc = desc.substring(0, 77) + "...";
-
-                card.innerHTML = `
-                    <h3>${repo.name.toUpperCase()}</h3>
-                    <p>${desc}</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 10px; color: #00ff41; border: 1px solid #00ff41; padding: 2px 4px;">
-                            ${repo.language || 'Markdown'}
-                        </span>
-                        <span style="font-size: 10px; opacity: 0.6;">VIEW_SOURCE >></span>
-                    </div>
-                `;
-                container.appendChild(card);
-            }
-        });
-
-        console.log("Repositorios cargados con éxito.");
+        renderRepos(repos, container);
 
     } catch (error) {
-        console.error("Error detallado:", error);
-        container.innerHTML = `
-            <p style="color: #ff4444;">>> CONNECTION_ERROR</p>
-            <p style="font-size: 0.8rem; color: #888;">Details: ${error.message}</p>
-            <p style="font-size: 0.8rem; color: #888;">Try refreshing the page or check your internet connection.</p>
-        `;
+        console.warn("GitHub API Limit reached or error. Loading fallback projects...", error);
+        renderRepos(FALLBACK_REPOS, container, true);
     }
 }
 
-// Asegurarse de que el DOM esté listo
+function renderRepos(repos, container, isFallback = false) {
+    container.innerHTML = ''; 
+    
+    if (isFallback) {
+        container.innerHTML = '<p style="color: #888; grid-column: 1/-1; margin-bottom: 10px;">[!] Note: Offline mode active. Showing featured projects.</p>';
+    }
+
+    repos.forEach(repo => {
+        if (!repo.fork) {
+            const card = document.createElement('div');
+            card.className = 'repo-card';
+            card.onclick = () => window.open(repo.html_url, '_blank');
+
+            let desc = repo.description || "Source code and technical documentation.";
+            if(desc.length > 85) desc = desc.substring(0, 82) + "...";
+
+            card.innerHTML = `
+                <h3>${repo.name.toUpperCase()}</h3>
+                <p>${desc}</p>
+                <div class="repo-footer">
+                    <span class="repo-lang">[ ${repo.language || 'Code'} ]</span>
+                    <span class="repo-link">VIEW_REPO >></span>
+                </div>
+            `;
+            container.appendChild(card);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', fetchRepos);
