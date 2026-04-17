@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Gonzalo Millón | Cybersecurity Student</title>
+    <title>ALEJANDRO GONZALO | Security Researcher</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="scanline"></div>
@@ -13,91 +12,79 @@
         
         <header>
             <div class="status-bar">
-                <span>[SESSION_ESTABLISHED]</span>
-                <span>LOCATION: MADRID, SPAIN</span>
-                <span>LANG: EN/ES</span>
+                <span>SYSTEM: ONLINE</span>
+                <span>API_STATUS: <span id="api-status">INITIALIZING...</span></span>
+                <span>LOCATION: MADRID, SP</span>
             </div>
         </header>
 
-        <main id="terminal">
-            <!-- HEADER -->
-            <section class="intro">
-                <h1 class="glitch">ALEJANDRO GONZALO MILLÓN</h1>
-                <p class="subtitle">>> B.Sc. Computer Engineering Student | Cybersecurity Enthusiast</p>
-                <div class="social-links">
-                    <a href="TU_LINKEDIN_AQUI" target="_blank">[ LinkedIn ]</a>
-                    <a href="https://github.com/aleee4442" target="_blank">[ GitHub ]</a>
+        <main>
+            <section class="hero">
+                <h1>ALEJANDRO GONZALO MILLÓN</h1>
+                <p class="glitch-text">>> COMPUTER ENGINEERING STUDENT & CYBERSECURITY ENTHUSIAST</p>
+                <div class="links">
+                    <a href="TU_LINKEDIN_URL">[ LinkedIn ]</a>
+                    <a href="https://github.com/aleee4442">[ GitHub ]</a>
                 </div>
             </section>
 
-            <!-- WHOAMI / CONTEXT -->
-            <section class="section">
-                <p class="command">$ whoami</p>
-                <div class="content">
-                    <p>I am a Computer Engineering student based in <strong>Madrid</strong>. My focus is on the vast field of <strong>Cybersecurity</strong>, where I enjoy analyzing vulnerabilities and understanding system architectures to build more secure environments.</p>
-                    <p>I consider myself a continuous learner, currently exploring both offensive and defensive security perspectives. I'm looking for international opportunities where I can apply my technical mindset and grow professionally.</p>
-                    <p><strong>Languages:</strong> Spanish (Native), English (Advanced / Professional Proficiency).</p>
+            <section class="box">
+                <p class="cmd">$ whoami</p>
+                <div class="inner">
+                    I am a 3rd-year Computer Engineering student at <strong>UNIE Universidad</strong> (2023-2027). 
+                    Based in Madrid, Spain, I focus on system security, networking, and ethical hacking. 
+                    I am highly motivated to solve complex problems and contribute to the global cybersecurity landscape.
+                    <br><br>
+                    <strong>Languages:</strong> English (Advanced / Professional Proficiency), Spanish (Native).
                 </div>
             </section>
 
-            <!-- EDUCATION -->
-            <section class="section">
-                <p class="command">$ ls /etc/education</p>
-                <div class="content">
-                    <div class="item">
-                        <span class="date">2023 - 2027 (Expected)</span>
-                        <span class="title">B.Sc. in Computer Engineering - UNIE Universidad</span>
-                        <p class="details">Currently in 3rd year. Key focus: Networking, OS Internals, and Software Security.</p>
+            <section class="box">
+                <p class="cmd">$ ls /education</p>
+                <div class="inner">
+                    <div class="edu-item">
+                        <span class="year">2023 - 2027</span>
+                        <span class="inst">B.Sc. Computer Engineering - UNIE Universidad</span>
                     </div>
-                    <div class="item">
-                        <span class="date">2021 - 2023</span>
-                        <span class="title">Technological Baccalaureate - IES Antonio de Nebrija</span>
+                    <div class="edu-item">
+                        <span class="year">2021 - 2023</span>
+                        <span class="inst">Technological Baccalaureate - IES Antonio de Nebrija</span>
                     </div>
                 </div>
             </section>
 
-            <!-- TECHNICAL SKILLS -->
-            <section class="section">
-                <p class="command">$ sysctl --list-capabilities</p>
-                <div class="content skills-container">
-                    <!-- PASTE YOUR SKILLS HERE -->
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">Linux Systems</span>
-                    <span class="skill-tag">Network Analysis</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Cyber-Defense</span>
-                    <span class="skill-tag">Bash Scripting</span>
+            <!-- SECCIÓN DE SKILLS -->
+            <section class="box">
+                <p class="cmd">$ systemctl --list-skills</p>
+                <div class="inner skills-grid">
+                    <!-- Ejemplos - cámbialos por los tuyos -->
+                    <span>Python</span> <span>Linux</span> <span>Networking</span> 
+                    <span>C++</span> <span>Git</span> <span>Bash</span>
                 </div>
             </section>
 
-            <!-- PROJECTS (AUTO-LOADED + FALLBACK) -->
-            <section class="section">
-                <p class="command">$ ./fetch_github_repos.py</p>
+            <section class="box">
+                <p class="cmd">$ ./list_repositories.sh</p>
                 <div id="github-repos" class="repo-grid">
-                    <!-- Dynamic content will load here -->
-                    <p class="loading">Initializing handshake...</p>
+                    <!-- Aquí se cargan los proyectos -->
                 </div>
             </section>
 
-            <!-- CERTIFICATIONS / COURSES -->
-            <section class="section">
-                <p class="command">$ find /mnt/certs -name "*.pdf"</p>
-                <div class="content">
-                    <ul class="course-list">
-                        <!-- PASTE YOUR COURSES HERE -->
-                        <li>[Course Name] - [Platform/Institution] (Year)</li>
-                        <li>[Course Name] - [Platform/Institution] (Year)</li>
+            <!-- CURSOS -->
+            <section class="box">
+                <p class="cmd">$ cat certifications.log</p>
+                <div class="inner">
+                    <ul class="cert-list">
+                        <li>[Course Name] - [Entity] (Pending Update)</li>
                     </ul>
                 </div>
             </section>
         </main>
-        
+
         <footer>
-            <p class="footer-note">GONZALO_MILLON_PORTFOLIO v2.0.4 - SECURE CONNECTION</p>
+            ALEJANDRO_GONZALO_TERMINAL_V1.0.4 - 2026
         </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
