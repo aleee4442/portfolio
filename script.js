@@ -1,4 +1,4 @@
-const GITHUB_USER = 'TU_USUARIO_GITHUB'; // <--- CAMBIA ESTO
+const GITHUB_USER = 'aleee4442'; // <--- CAMBIA ESTO
 
 async function getRepos() {
     const repoContainer = document.getElementById('github-repos');
