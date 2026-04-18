@@ -1,103 +1,54 @@
 const GITHUB_USER = 'aleee4442';
 
-/** 
- * CONFIGURACIÓN DE PRIORIDADES
- * Escribe aquí el nombre EXACTO de tus repositorios de GitHub 
- * en el orden en que quieres que aparezcan.
- */
+// ESCRIBE AQUÍ LOS NOMBRES DE TUS REPOS QUE QUIERES QUE SALGAN PRIMERO
 const PRIORITY_REPOS = [
-    'lab', 
-    'password-generator',
-    'MIPS_processor'
+    'portfolio', // Ejemplo
+    'lab'
 ];
 
-// PROYECTOS LOCALES (Fallback por si GitHub falla)
-const LOCAL_PROJECTS = [
-    {
-        name: "Security-Hardening-Tool",
-        description: "Custom scripts for automated Linux server hardening and audit.",
-        html_url: `https://github.com/${GITHUB_USER}`,
-        language: "Bash"
-    },
-    {
-        name: "Python-Nmap-Scanner",
-        description: "A multithreaded network scanner with vulnerability detection.",
-        html_url: `https://github.com/${GITHUB_USER}`,
-        language: "Python"
-    }
-];
-
-async function initTerminal() {
+async function fetchRepos() {
     const container = document.getElementById('github-repos');
-    const statusText = document.getElementById('api-status');
-    
+    const status = document.getElementById('api-status');
+
     try {
-        statusText.innerText = "HANDSHAKE_INITIATED...";
-        // Pedimos más repositorios (ej. 30) para poder filtrar y ordenar bien
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=30&sort=updated`);
-        
-        if (!response.ok) throw new Error("API_LIMIT_OR_DOWN");
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=50&sort=updated`);
+        if (!response.ok) throw new Error("API_ERROR");
 
         let repos = await response.json();
-        statusText.innerText = "SUCCESS: DATA_FETCHED";
+        status.innerText = "CONNECTED";
 
-        // 1. Filtrar para quitar los que son forks
-        repos = repos.filter(repo => !repo.fork);
-
-        // 2. Lógica de Ordenación Custom
-        repos.sort((a, b) => {
+        // Filtrar forks y ordenar por prioridad
+        repos = repos.filter(r => !r.fork).sort((a, b) => {
             const indexA = PRIORITY_REPOS.indexOf(a.name);
             const indexB = PRIORITY_REPOS.indexOf(b.name);
-
-            // Si ambos están en la lista de prioridad, respetar el orden de la lista
             if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-            // Si solo A está en la lista, ponerlo primero
             if (indexA !== -1) return -1;
-            // Si solo B está en la lista, ponerlo primero
             if (indexB !== -1) return 1;
-            // Si ninguno está en la lista, ordenar por estrellas (o fecha)
-            return b.stargazers_count - a.stargazers_count;
+            return 0;
         });
 
-        renderRepos(repos, container);
-
-    } catch (error) {
-        console.error("Connection error:", error);
-        statusText.innerText = "ERROR: OFFLINE_MODE_ACTIVE";
-        statusText.style.color = "#ff4444";
-        renderRepos(LOCAL_PROJECTS, container, true);
+        render(repos.slice(0, 12), container);
+    } catch (e) {
+        status.innerText = "OFFLINE_MODE";
+        status.style.color = "orange";
+        // Fallback: mostrar un mensaje si la API falla por la caída de hoy
+        container.innerHTML = "<p>GitHub API is currently unstable. Please check my profile manually at github.com/aleee4442</p>";
     }
 }
 
-function renderRepos(repos, container, isFallback = false) {
-    container.innerHTML = ''; 
-    
-    // Si quieres mostrar todos, quita el .slice(0, 12)
-    // He puesto 12 porque suele quedar bien en cuadrículas de 3 en 3.
-    repos.slice(0, 12).forEach(repo => {
+function render(repos, container) {
+    container.innerHTML = "";
+    repos.forEach(repo => {
         const card = document.createElement('div');
         card.className = 'repo-card';
-        
-        // Si el repo es de prioridad, le añadimos una clase especial por si quieres destacarlo visualmente
-        if (PRIORITY_REPOS.includes(repo.name)) {
-            card.classList.add('featured');
-        }
-
         card.onclick = () => window.open(repo.html_url, '_blank');
-
         card.innerHTML = `
-            <div class="repo-header">
-                <span class="folder">${PRIORITY_REPOS.includes(repo.name) ? '⭐' : '📁'}</span>
-                <h3>${repo.name.toUpperCase()}</h3>
-            </div>
-            <p>${repo.description || "Technical project related to computer science and security."}</p>
-            <div class="repo-footer">
-                <span class="repo-lang">[ ${repo.language || 'Code'} ]</span>
-                <span class="repo-link">OPEN_SOURCE >></span>
-            </div>
+            <h3>${repo.name.toUpperCase()}</h3>
+            <p>${repo.description || "Source code for security project."}</p>
+            <span style="font-size:0.6rem; color: #00ff41;">[ ${repo.language || 'Documentation'} ]</span>
         `;
         container.appendChild(card);
     });
 }
 
-document.addEventListener('DOMContentLoaded', initTerminal);
+document.addEventListener('DOMContentLoaded', fetchRepos);
