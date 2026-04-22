@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="green">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +10,16 @@
 <body>
     <div class="scanline"></div>
     
-    <!-- THEME SELECTOR -->
-    <div class="theme-switcher">
-        <button onclick="setTheme('green')" title="Hacker Green" class="t-btn green-btn"></button>
-        <button onclick="setTheme('cyan')" title="Modern Cyan" class="t-btn cyan-btn"></button>
-        <button onclick="setTheme('amber')" title="Vintage Amber" class="t-btn amber-btn"></button>
-    </div>
-
     <div class="terminal-container">
+        <!-- HEADER EN EL MISMO NIVEL QUE EL BOTÓN -->
         <header>
             <div class="status-bar">
-                <span>[SESSION: ACTIVE]</span>
-                <span class="desktop-only">HOST: gonzalo-millon.madrid</span>
-                <span>STATUS: <span id="api-status">INIT...</span></span>
+                <div class="status-indicators">
+                    <span>[SESSION: ACTIVE]</span>
+                    <span class="desktop-only">HOST: gonzalo-millon.madrid</span>
+                    <span>STATUS: <span id="api-status">INIT</span></span>
+                </div>
+                <button id="theme-toggle" onclick="toggleTheme()">[ LIGHT_MODE ]</button>
             </div>
         </header>
 
@@ -30,9 +27,10 @@
             <section class="hero">
                 <h1 class="glitch">ALEJANDRO GONZALO MILLÓN</h1>
                 <p class="role-text">>> COMPUTER ENGINEERING STUDENT @ UNIE</p>
+                <!-- ENLACES EN AZUL CIANO -->
                 <div class="social-links">
-                    <a href="TU_LINKEDIN">[ LinkedIn ]</a>
-                    <a href="https://github.com/aleee4442">[ GitHub ]</a>
+                    <a href="TU_LINKEDIN_AQUI" target="_blank">[ LinkedIn ]</a>
+                    <a href="https://github.com/aleee4442" target="_blank">[ GitHub ]</a>
                 </div>
             </section>
 
@@ -74,31 +72,26 @@
             <section class="section-box">
                 <h2 class="cmd">./list_projects.py</h2>
                 <div id="github-repos" class="repo-grid">
-                    <!-- Projects load here -->
+                    <!-- Los repositorios de GitHub se cargarán aquí -->
                 </div>
             </section>
 
             <section class="section-box">
                 <h2 class="cmd">cat certifications.log</h2>
                 <div class="inner-content cert-list">
-                    <div class="cert-row">
-                        <span class="c-date">2026</span>
-                        <span class="c-name">Network Security Certification <small>(GMetrix)</small></span>
-                    </div>
-                    <div class="cert-row">
-                        <span class="c-date">2025</span>
-                        <span class="c-name">Networking Devices & Configuration <small>(Cisco)</small></span>
-                    </div>
-                    <div class="cert-row highlight">
-                        <span class="c-date">2024</span>
-                        <span class="c-name">AWS Academy Cloud Architecting <small>(Amazon)</small></span>
-                    </div>
+                    <!-- FORMATO SOLICITADO -->
+                    <p>2026 - Network Security Certification (GMetrix)</p>
+                    <p>2025 - Networking Devices & Initial Configuration (Cisco)</p>
+                    <p>2025 - Networking Basics (Cisco)</p>
+                    <p>2025 - Introduction to Cybersecurity (Cisco)</p>
+                    <p>2025 - HackTheBox Learning Process Module (HTB)</p>
+                    <p>2024 - AWS Academy Graduate - AWS Academy Cloud Architecting (Amazon Web Services)</p>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>ALEJANDRO_GONZALO_MILLON // MADRID 2024 // SYSTEM_V2.1</p>
+            <p>ALEJANDRO_GONZALO_MILLON // MADRID 2026 // SYSTEM_V2.2</p>
         </footer>
     </div>
 

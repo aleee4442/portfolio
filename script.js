@@ -1,16 +1,27 @@
 const GITHUB_USER = 'aleee4442';
 
-// 1. Manejo de Temas
-function setTheme(themeName) {
-    document.documentElement.setAttribute('data-theme', themeName);
-    localStorage.setItem('theme', themeName);
+// 1. FUNCIÓN PARA CAMBIAR ENTRE MODO CLARO Y OSCURO
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Cambiar el texto del botón
+    const btn = document.getElementById('theme-toggle');
+    btn.innerText = newTheme === 'dark' ? '[ LIGHT_MODE ]' : '[ DARK_MODE ]';
 }
 
-// Cargar tema guardado
-const savedTheme = localStorage.getItem('theme') || 'green';
-setTheme(savedTheme);
+// Cargar el tema preferido del usuario al entrar
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+window.onload = () => {
+    const btn = document.getElementById('theme-toggle');
+    if(btn) btn.innerText = savedTheme === 'dark' ? '[ LIGHT_MODE ]' : '[ DARK_MODE ]';
+}
 
-// 2. Carga de Repositorios (Con tu usuario real)
+// 2. CARGA DE REPOSITORIOS DE GITHUB
 async function fetchRepos() {
     const container = document.getElementById('github-repos');
     const apiStatus = document.getElementById('api-status');
@@ -21,7 +32,6 @@ async function fetchRepos() {
 
         const repos = await response.json();
         apiStatus.innerText = "ONLINE";
-        apiStatus.style.color = "var(--primary)";
 
         container.innerHTML = "";
         repos.filter(r => !r.fork).forEach(repo => {
@@ -30,14 +40,15 @@ async function fetchRepos() {
             card.onclick = () => window.open(repo.html_url, '_blank');
             card.innerHTML = `
                 <h3>${repo.name.toUpperCase()}</h3>
-                <p style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">${repo.description || 'No description provided.'}</p>
-                <span style="font-size: 0.7rem; color: var(--primary)">[ ${repo.language || 'Binary'} ]</span>
+                <p style="font-size: 0.85rem; color: #aaa; margin: 8px 0;">${repo.description || 'No description provided.'}</p>
+                <span style="font-size: 0.75rem; color: var(--primary)">[ ${repo.language || 'Code'} ]</span>
             `;
             container.appendChild(card);
         });
     } catch (e) {
         apiStatus.innerText = "OFFLINE_MODE";
-        container.innerHTML = "<p>GitHub API limit reached. Visit my profile at github.com/aleee4442</p>";
+        apiStatus.style.color = "orange";
+        container.innerHTML = "<p>GitHub API limit reached or down. Visit my profile at github.com/aleee4442</p>";
     }
 }
 
