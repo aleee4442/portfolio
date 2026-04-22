@@ -1,116 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="green">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Gonzalo | Cybersecurity Portfolio</title>
-    <!-- Asegúrate de que el archivo se llame style.css -->
+    <title>Alejandro Gonzalo | Security Engineer Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="scanline"></div>
+    
+    <!-- THEME SELECTOR -->
+    <div class="theme-switcher">
+        <button onclick="setTheme('green')" title="Hacker Green" class="t-btn green-btn"></button>
+        <button onclick="setTheme('cyan')" title="Modern Cyan" class="t-btn cyan-btn"></button>
+        <button onclick="setTheme('amber')" title="Vintage Amber" class="t-btn amber-btn"></button>
+    </div>
+
     <div class="terminal-container">
-        
         <header>
             <div class="status-bar">
-                <span>[SESSION_ESTABLISHED]</span>
-                <span>LOCATION: MADRID, SP</span>
-                <span>API_STATUS: <span id="api-status">INIT</span></span>
+                <span>[SESSION: ACTIVE]</span>
+                <span class="desktop-only">HOST: gonzalo-millon.madrid</span>
+                <span>STATUS: <span id="api-status">INIT...</span></span>
             </div>
         </header>
 
         <main>
-            <!-- HEADER -->
-            <section class="intro">
-                <h1>ALEJANDRO GONZALO MILLÓN</h1>
-                <p class="subtitle">>> Computer Engineering Student | Cybersecurity Enthusiast</p>
+            <section class="hero">
+                <h1 class="glitch">ALEJANDRO GONZALO MILLÓN</h1>
+                <p class="role-text">>> COMPUTER ENGINEERING STUDENT @ UNIE</p>
                 <div class="social-links">
-                    <a href="TU_LINKEDIN_AQUI" target="_blank">[ LinkedIn ]</a>
-                    <a href="https://github.com/aleee4442" target="_blank">[ GitHub ]</a>
+                    <a href="TU_LINKEDIN">[ LinkedIn ]</a>
+                    <a href="https://github.com/aleee4442">[ GitHub ]</a>
                 </div>
             </section>
 
-            <!-- WHOAMI -->
-            <section class="section">
-                <p class="command">$ whoami</p>
-                <div class="content">
-                    <p>3rd-year Computer Engineering student at <strong>UNIE Universidad</strong>. Based in Madrid. Focused on network security, system hardening, and professional growth in the cybersecurity field.</p>
+            <section class="section-box">
+                <h2 class="cmd">whoami</h2>
+                <div class="inner-content">
+                    <p>Computer Engineering student based in <strong>Madrid, Spain</strong>. Passionate about cybersecurity, system architecture, and low-level programming. Focused on becoming a versatile security professional.</p>
                     <p><strong>Languages:</strong> English (Advanced), Spanish (Native).</p>
                 </div>
             </section>
 
-            <!-- EDUCATION -->
-            <section class="section">
-                <p class="command">$ ls /education</p>
-                <div class="content">
-                    <div class="item">
-                        <span class="date">2023 - 2027</span>
-                        <span class="title">B.Sc. Computer Engineering - UNIE Universidad</span>
-                    </div>
-                    <div class="item">
-                        <span class="date">2021 - 2023</span>
-                        <span class="title">Technological Baccalaureate - IES Antonio de Nebrija</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SKILLS -->
-            <section class="section">
-                <p class="command">$ ls -R /skills</p>
-                <div class="content">
-                    <div class="skill-category">
-                        <span class="category-title">[ CYBERSECURITY & NETWORKS ]</span>
-                        <div class="tags">
-                            <span class="skill-tag">Network Security</span> <span class="skill-tag">OS Security</span>
-                            <span class="skill-tag">Linux</span> <span class="skill-tag">Networking Devices</span>
+            <section class="section-box">
+                <h2 class="cmd">ls --skills</h2>
+                <div class="inner-content skills-wrapper">
+                    <div class="skill-group">
+                        <h3>[ CYBERSECURITY & NETWORKS ]</h3>
+                        <div class="tag-container">
+                            <span class="tag">Network Security</span>
+                            <span class="tag">OS Hardening</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Networking Devices</span>
+                            <span class="tag">Information Security</span>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <span class="category-title">[ PROGRAMMING ]</span>
-                        <div class="tags">
-                            <span class="skill-tag">Rust</span> <span class="skill-tag">Python</span>
-                            <span class="skill-tag">C/C++</span> <span class="skill-tag">Assembly</span>
-                            <span class="skill-tag">Bash</span> <span class="skill-tag">Java</span>
+                    <div class="skill-group">
+                        <h3>[ PROGRAMMING & DEV ]</h3>
+                        <div class="tag-container">
+                            <span class="tag">Rust</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">C / C++</span>
+                            <span class="tag">Assembly</span>
+                            <span class="tag">Bash</span>
+                            <span class="tag">Java</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- PROJECTS -->
-            <section class="section">
-                <p class="command">$ ./list_projects.sh</p>
+            <section class="section-box">
+                <h2 class="cmd">./list_projects.py</h2>
                 <div id="github-repos" class="repo-grid">
-                    <!-- Loaded via script.js -->
+                    <!-- Projects load here -->
                 </div>
             </section>
 
-            <!-- CERTIFICATIONS -->
-            <section class="section">
-                <p class="command">$ cat certifications.log</p>
-                <div class="content">
-                    <div class="cert-item highlight">
-                        <span class="cert-date">JAN 2026</span>
-                        <span class="cert-title">Network Security Certification - GMetrix LLC</span>
+            <section class="section-box">
+                <h2 class="cmd">cat certifications.log</h2>
+                <div class="inner-content cert-list">
+                    <div class="cert-row">
+                        <span class="c-date">2026</span>
+                        <span class="c-name">Network Security Certification <small>(GMetrix)</small></span>
                     </div>
-                    <div class="cert-item">
-                        <span class="cert-date">MAR 2025</span>
-                        <span class="cert-title">Networking Devices & Initial Configuration - Cisco</span>
+                    <div class="cert-row">
+                        <span class="c-date">2025</span>
+                        <span class="c-name">Networking Devices & Configuration <small>(Cisco)</small></span>
                     </div>
-                    <div class="cert-item highlight">
-                        <span class="cert-date">JUN 2024</span>
-                        <span class="cert-title">AWS Academy Cloud Architecting - Amazon Web Services</span>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-date">JAN 2025</span>
-                        <span class="cert-title">HTB Learning Process - HackTheBox</span>
+                    <div class="cert-row highlight">
+                        <span class="c-date">2024</span>
+                        <span class="c-name">AWS Academy Cloud Architecting <small>(Amazon)</small></span>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>GONZALO_MILLON_SYSTEM_v1.0.5</p>
+            <p>ALEJANDRO_GONZALO_MILLON // MADRID 2024 // SYSTEM_V2.1</p>
         </footer>
     </div>
 
