@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +11,12 @@
     <div class="scanline"></div>
     
     <div class="terminal-container">
-        <!-- HEADER EN EL MISMO NIVEL QUE EL BOTÓN -->
         <header>
+            <!-- CABECERA DISTRIBUIDA: IZQUIERDA, CENTRO, DERECHA -->
             <div class="status-bar">
-                <div class="status-indicators">
-                    <span>[SESSION: ACTIVE]</span>
-                    <span class="desktop-only">HOST: gonzalo-millon.madrid</span>
-                    <span>STATUS: <span id="api-status">INIT</span></span>
-                </div>
-                <button id="theme-toggle" onclick="toggleTheme()">[ LIGHT_MODE ]</button>
+                <span class="status-left">[SESSION: ACTIVE]</span>
+                <span class="status-center">HOST: alejandro-gonzalo.madrid</span>
+                <span class="status-right">STATUS: <span id="api-status">INIT</span></span>
             </div>
         </header>
 
@@ -27,71 +24,83 @@
             <section class="hero">
                 <h1 class="glitch">ALEJANDRO GONZALO MILLÓN</h1>
                 <p class="role-text">>> COMPUTER ENGINEERING STUDENT @ UNIE</p>
-                <!-- ENLACES EN AZUL CIANO -->
                 <div class="social-links">
-                    <a href="TU_LINKEDIN_AQUI" target="_blank">[ LinkedIn ]</a>
+                    <a href="https://www.linkedin.com/in/ale442/" target="_blank">[ LinkedIn ]</a>
                     <a href="https://github.com/aleee4442" target="_blank">[ GitHub ]</a>
                 </div>
             </section>
 
             <section class="section-box">
-                <h2 class="cmd">whoami</h2>
-                <div class="inner-content">
-                    <p>Computer Engineering student based in <strong>Madrid, Spain</strong>. Passionate about cybersecurity, system architecture, and low-level programming. Focused on becoming a versatile security professional.</p>
-                    <p><strong>Languages:</strong> English (Advanced), Spanish (Native).</p>
-                </div>
-            </section>
-
-            <section class="section-box">
                 <h2 class="cmd">ls --skills</h2>
+                <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">// Click on skills to filter projects</p>
                 <div class="inner-content skills-wrapper">
                     <div class="skill-group">
                         <h3>[ CYBERSECURITY & NETWORKS ]</h3>
-                        <div class="tag-container">
-                            <span class="tag">Network Security</span>
-                            <span class="tag">OS Hardening</span>
-                            <span class="tag">Linux</span>
-                            <span class="tag">Networking Devices</span>
-                            <span class="tag">Information Security</span>
+                        <div class="tag-container" id="filter-container">
+                            <span class="tag" data-skill="Network Security">Network Security</span>
+                            <span class="tag" data-skill="Security Tools">Security Tools</span>
+                            <span class="tag" data-skill="OS Hardening">OS Hardening</span>
+                            <span class="tag" data-skill="Linux">Linux</span>
+                            <span class="tag" data-skill="Networking Devices">Networking Devices</span>
+                            <span class="tag" data-skill="Security Information">Security Information</span>
+                            <span class="tag" data-skill="Network Configuration">Network Configuration</span>
                         </div>
                     </div>
+
                     <div class="skill-group">
-                        <h3>[ PROGRAMMING & DEV ]</h3>
+                        <h3>[ PROGRAMMING ]</h3>
                         <div class="tag-container">
-                            <span class="tag">Rust</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">C / C++</span>
-                            <span class="tag">Assembly</span>
-                            <span class="tag">Bash</span>
-                            <span class="tag">Java</span>
+                            <span class="tag" data-skill="Rust">Rust</span>
+                            <span class="tag" data-skill="Python">Python</span>
+                            <span class="tag" data-skill="C">C</span>
+                            <span class="tag" data-skill="Assembly">Assembly</span>
+                            <span class="tag" data-skill="Bash">Bash</span>
+                            <span class="tag" data-skill="Java">Java</span>
+                            <span class="tag" data-skill="R">R</span>
+                            <span class="tag" data-skill="Web Scraping">Web Scraping</span>
+                            <span class="tag" data-skill="Flet">Flet</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3>[ GENERAL & AI / PRODUCTIVITY ]</h3>
+                        <div class="tag-container">
+                            <span class="tag" data-skill="AI">Artificial Intelligence</span>
+                            <span class="tag" data-skill="NLP">Natural Language Processing</span>
+                            <span class="tag" data-skill="Content Automation">Content Automation</span>
+                            <span class="tag" data-skill="Learning Efficiency">Learning Efficiency</span>
+                            <span class="tag" data-skill="Self-discipline">Self-discipline</span>
+                            <span class="tag" data-skill="Microsoft Office">Microsoft Office</span>
+                            <span class="tag" data-skill="Communication">Communication</span>
+                            <span class="tag" data-skill="Quality Management">Quality Management</span>
+                            <span class="tag" data-skill="Cloud Architecting">Cloud Architecting (AWS)</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="section-box">
-                <h2 class="cmd">./list_projects.py</h2>
+                <h2 class="cmd">./list_projects.py --filtered</h2>
                 <div id="github-repos" class="repo-grid">
-                    <!-- Los repositorios de GitHub se cargarán aquí -->
+                    <!-- Se carga dinámicamente -->
                 </div>
             </section>
 
             <section class="section-box">
                 <h2 class="cmd">cat certifications.log</h2>
                 <div class="inner-content cert-list">
-                    <!-- FORMATO SOLICITADO -->
                     <p>2026 - Network Security Certification (GMetrix)</p>
                     <p>2025 - Networking Devices & Initial Configuration (Cisco)</p>
                     <p>2025 - Networking Basics (Cisco)</p>
                     <p>2025 - Introduction to Cybersecurity (Cisco)</p>
                     <p>2025 - HackTheBox Learning Process Module (HTB)</p>
-                    <p>2024 - AWS Academy Graduate - AWS Academy Cloud Architecting (Amazon Web Services)</p>
+                    <p>2024 - AWS Academy Cloud Architecting (Amazon Web Services)</p>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>ALEJANDRO_GONZALO_MILLON // MADRID 2026 // SYSTEM_V2.2</p>
+            <p>ALEJANDRO_GONZALO_MILLON // MADRID 2026</p>
         </footer>
     </div>
 
